@@ -34,11 +34,11 @@ driver_license = True
 
 ```python
 class Person:
-    def __init__(self): # initialise with built in method called __init__(self) - self refers to current class
+    def __init__(self, age, license): # initialise with built in method called __init__(self) - self refers to current class
         # we declare attributes in our methods
         self.vote_age = 18
-        self.age = int(input("What is your age? >> "))
-        self.driver_license = str(input("Do you have a driving license?  yes/no >> ").lower())
+        self.age = age
+        self.driver_license = license
 
     def drink(self):
         if self.age >= 18:
@@ -62,16 +62,21 @@ class Person:
             return "Go to the voting booth."
         return "Maybe better luck next year."
 
-student = Person()
+stop = ""
+#  as a user I should be able to keep being prompted for input until I say 'exit'
 while True:
-    stop = ""
     if stop == "exit":
         break
+    age = int(input("What is your age? >> "))
+    license = str(input("Do you have a driving license?  yes/no >> ").lower())
+    student = Person(age, license)
+
     # - You can vote
     print(student.drink())
     # # - You can drive
     print(student.drive())
     # - You can vote
     print(student.can_i_vote())
-    stop = input("Would you like to try again? ")
+    stop = input("Shall we try again? Write exit to stop >>")
+
 ```
